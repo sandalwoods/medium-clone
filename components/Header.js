@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Logo from '../static/logo.png'
+import Logo from './../static/logo.png'
 
 const styles = {
   wrapper: 'flex justify-center gap-10 p-5 bg-[#FCC017]',
