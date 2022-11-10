@@ -31,7 +31,7 @@ const styles = {
   articleText: `font-mediumSerif text-[1.4rem] text-[#292929]`,
 };
 
-const ArticleMain = () => {
+const ArticleMain = ({ post, author }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -40,15 +40,22 @@ const ArticleMain = () => {
             <div className={styles.authorProfileImageContainer}>
               <Image
                 className={styles.image}
-                src={Qazi}
+                // src={Qazi}
+                src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageUrl}`}
                 width={100}
                 height={100}
               />
             </div>
             <div className={styles.column}>
-              <div>Rafeh Qazi</div>
+              <div>{author?.data?.name}</div>
               <div className={styles.postDetails}>
-                <span>June 15 • 7 min read •</span>
+                <span>
+                  {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                  })}{" "}
+                  • {post?.data?.postLength} min read •
+                </span>
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle /> Listen
                 </span>
@@ -71,36 +78,25 @@ const ArticleMain = () => {
           <div className={styles.bannerContainer}>
             <Image
               className={styles.image}
-              src={Banner}
-              width={100}
+              // src={Banner}
+              src={`https://res.cloudinary.com/demo/image/fetch/${post?.data?.bannerImage}`}
+              width={500}
               height={100}
             />
           </div>
-          <h1 className={styles.title}>
-            7 Free Tools That will make you more productive in 2022
-          </h1>
+          <h1 className={styles.title}>{post?.data?.title}</h1>
           <h4 className={styles.subtitle}>
-            <div>Rafeh Qazi, June 15, 2022</div>
-            <div>Brief: Productivity is a skill that can be learned.</div>
+            <div>
+              {author?.data?.name},{" "}
+              {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </div>
+            <div>{post?.data?.brief}</div>
           </h4>
-          <div className={styles.articleText}>
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned. be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned. be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned. be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned. be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned. be learned Productivity is a skill that can be learned
-            Productivity is a skill that can be learned Productivity is a skill
-            that can be learned.
-          </div>
+          <div className={styles.articleText}>{post?.data?.body}</div>
         </div>
       </div>
     </div>

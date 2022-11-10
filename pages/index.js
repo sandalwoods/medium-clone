@@ -12,10 +12,9 @@ const styles = {
 };
 
 export default function Home() {
+  const { posts } = useContext(MediumContext);
+  console.log(posts);
 
-  const { posts } = useContext(MediumContext)
-  console.log(posts)
-  
   return (
     <>
       <div className={styles.wrapper}>
@@ -24,9 +23,9 @@ export default function Home() {
         <div className={styles.main}>
           <div className={styles.container}>
             <div className={styles.postList}>
-              <PostCard />
-              <PostCard />
-              <PostCard />
+              {posts.map(post => (
+                <PostCard post={post} key={post.id} />
+              ))}
             </div>
           </div>
         </div>
